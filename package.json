@@ -4,8 +4,10 @@
   "description": "📨 Simple CLI to generate responsive emails using MJML for templating and handlebars for interpolation.",
   "main": "src/main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint . --ext .ts"
+    "build": "tsc",
+    "start": "npm run build && node dist/main",
+    "lint": "npx eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -42,5 +44,9 @@
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.4.0"
   }
 }
