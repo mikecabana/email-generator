@@ -1,14 +1,14 @@
 import 'reflect-metadata';
 
-import { DependencyInjection } from './internal'
-import { ArgumentManager } from './services/argument-manager.class';
+import { DependencyInjection } from './app/internal'
+import { EmailGeneratorManager } from './abstraction';
 
 class Program {
     public main(...args: unknown[]) {
         DependencyInjection.configureServices();
 
-        const argManager = DependencyInjection.serviceProvider().resolve<ArgumentManager>('ArgumentManager');
-        argManager.init(...args);
+        const emailGeneratorManager = DependencyInjection.serviceProvider().resolve<EmailGeneratorManager>('EmailGeneratorManager');
+        emailGeneratorManager.init(...args);
     }
 }
 

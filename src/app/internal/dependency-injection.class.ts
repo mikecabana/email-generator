@@ -1,5 +1,6 @@
 import { container, DependencyContainer } from 'tsyringe';
-import { ArgumentManager } from '../services/argument-manager.class';
+import { EmailGeneratorManagerBase, IEmailGeneratorArgumentProvider } from '../../abstraction';
+import { DefaultEmailGeneratorArgumentProvider } from '../services';
 
 /**
  * Types of DI lifecycle
@@ -17,6 +18,9 @@ export class DependencyInjection {
     public static serviceProvider: () => DependencyContainer = () => container;
 
     public static configureServices(): void { 
-        container.register<ArgumentManager>('ArgumentManager', { useClass: ArgumentManager });
+
+        container.register<IEmailGeneratorArgumentProvider>('DefaultEmailGeneratorArgumentProvider', { useClass: DefaultEmailGeneratorArgumentProvider })
+
+        container.register<EmailGeneratorManagerBase>('EmailGeneratorManagerBase', { useClass: EmailGeneratorManagerBase });
     }
 }

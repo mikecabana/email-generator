@@ -1,0 +1,1 @@
+export * from './i-email-generator-handler.class';
