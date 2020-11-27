@@ -12,9 +12,9 @@ export class DefaultEmailGeneratorPipelineProcessor implements IEmailGeneratorPi
 
             const [key, value] = option;
 
-            outputs.push(`Using ${key} option`);
-            outputs.push(`Flag ${value.flag}`);
-            outputs.push(`Value ${value.value}`);
+            outputs.push(`Using "${key}" option`);
+            outputs.push(`Flag: ${value.flag}`);
+            outputs.push(`Value: ${value.value}`);
             outputs.push(`========================`);
         }
 
