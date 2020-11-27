@@ -2,5 +2,4 @@ import { IEmailGeneratorOptions } from "../../i-email-generator-options.interfac
 
 export interface IEmailGeneratorHandler {
     handle(options: IEmailGeneratorOptions): IEmailGeneratorOptions;
-    hasOption(flag: string, options: IEmailGeneratorOptions): boolean;
 }

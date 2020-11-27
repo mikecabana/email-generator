@@ -6,17 +6,11 @@ export class DefaultEmailGeneratorPipelineProcessor implements IEmailGeneratorPi
     processEmailGeneratorPipeline(options: IEmailGeneratorOptions): string[] {
 
         const outputs: string[] = [];
-        const optionsList = Object.entries(options);
 
-        for (const option of optionsList) {
-
-            const [key, value] = option;
-
-            outputs.push(`Using "${key}" option`);
-            outputs.push(`Flag: ${value.flag}`);
-            outputs.push(`Value: ${value.value}`);
-            outputs.push(`========================`);
-        }
+        outputs.push(`========================`);
+        outputs.push(`OPTIONS:`);
+        outputs.push(JSON.stringify(options));
+        outputs.push(`========================`);
 
         return outputs;
     }
