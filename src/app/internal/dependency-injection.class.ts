@@ -1,6 +1,9 @@
 import { container, DependencyContainer } from 'tsyringe';
-import { EmailGeneratorManagerBase, IEmailGeneratorArgumentProvider } from '../../abstraction';
-import { DefaultEmailGeneratorArgumentProvider } from '../services';
+import { EmailGeneratorManagerBase, IEmailGeneratorOptionsProvider, IEmailGeneratorOutputProcessor, IEmailGeneratorPipelineProcessor } from '../../abstraction';
+import { DefaultEmailGeneratorOptionsProvider } from '../services';
+import { DefaultEmailGeneratorManager } from '../services/default-email-generator-manager.class';
+import { DefaultEmailGeneratorOutputProcessor } from '../services/default-email-generator-output-processor.class';
+import { DefaultEmailGeneratorPipelineProcessor } from '../services/default-email-generator-pipeline.processor.class';
 
 /**
  * Types of DI lifecycle
@@ -19,8 +22,20 @@ export class DependencyInjection {
 
     public static configureServices(): void { 
 
-        container.register<IEmailGeneratorArgumentProvider>('DefaultEmailGeneratorArgumentProvider', { useClass: DefaultEmailGeneratorArgumentProvider })
+        // providers
+        container
+            .register<IEmailGeneratorOptionsProvider>('IEmailGeneratorOptionsProvider', { useClass: DefaultEmailGeneratorOptionsProvider });
 
-        container.register<EmailGeneratorManagerBase>('EmailGeneratorManagerBase', { useClass: EmailGeneratorManagerBase });
+        // processors
+        container
+            .register<IEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor', { useClass: DefaultEmailGeneratorPipelineProcessor })
+            .register<IEmailGeneratorOutputProcessor>('IEmailGeneratorOutputProcessor', { useClass: DefaultEmailGeneratorOutputProcessor });
+
+        // handlers
+        // ToDo
+        
+        // manager
+        container
+            .register<EmailGeneratorManagerBase>('EmailGeneratorManagerBase', { useClass: DefaultEmailGeneratorManager });
     }
 }

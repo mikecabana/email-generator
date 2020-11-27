@@ -1,26 +1,25 @@
-import { IEmailGeneratorArguentProcessor } from "../i-email-generator-argument-processor.interface";
-import { IEmailGeneratorArgumentProvider } from "../i-email-generator-argument-provider.interface";
+import { IEmailGeneratorOptionsProvider } from "../i-email-generator-options-provider.interface";
+import { IEmailGeneratorPipelineProcessor } from "../i-email-generator-pipeline-processor.interface";
 import { IEmailGeneratorOutputProcessor } from "../i-email-generator-output-processor.interface";
 
 export abstract class EmailGeneratorManagerBase {
 
-    private readonly _argumentProvider: IEmailGeneratorArgumentProvider;
-    private readonly _argumentProcessor: IEmailGeneratorArguentProcessor;
+    private readonly _optionsProvider: IEmailGeneratorOptionsProvider;
+    private readonly _pipelineProcessor: IEmailGeneratorPipelineProcessor;
     private readonly _outputProcessor: IEmailGeneratorOutputProcessor;
 
     constructor(
-        argumentProvider: IEmailGeneratorArgumentProvider, 
-        argumentProcessor: IEmailGeneratorArguentProcessor, 
+        optionsProvider: IEmailGeneratorOptionsProvider, 
+        pipelineProcessor: IEmailGeneratorPipelineProcessor, 
         outputProcessor: IEmailGeneratorOutputProcessor) {
-        this._argumentProvider = argumentProvider;
-        this._argumentProcessor = argumentProcessor;
+        this._optionsProvider = optionsProvider;
+        this._pipelineProcessor = pipelineProcessor;
         this._outputProcessor = outputProcessor;
     }
 
     public init(): void {
-        const args = this._argumentProvider.getEmailGeneratorArguments();
-        const opts = this._argumentProcessor.processEmailGeneratorArguments(...args);
-        // ToDo: use the options in the pipeline 
-        this._outputProcessor.processEmailGeneratorOutputs('')
+        const opts = this._optionsProvider.getEmailGeneratorOptions();
+        const outputs = this._pipelineProcessor.processEmailGeneratorPipeline(opts);
+        this._outputProcessor.processEmailGeneratorOutputs(outputs)
     }
 }
