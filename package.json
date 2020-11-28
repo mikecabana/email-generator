@@ -1,60 +1,60 @@
 {
-  "name": "email-generator",
-  "version": "1.0.0",
-  "description": "📨 Simple CLI to generate responsive emails using MJML for templating and handlebars for interpolation.",
-  "main": "src/main.ts",
-  "scripts": {
-    "tsc": "tsc",
-    "build": "npm run tsc",
-    "start": "npm run build && node dist/main",
-    "lint": "npx eslint . --ext .ts",
-    "test": "jasmine-ts --config=jasmine.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mikecabana/email-generator.git"
-  },
-  "keywords": [
-    "mjml",
-    "handlebars",
-    "email",
-    "generator",
-    "typescript"
-  ],
-  "author": {
-    "name": "Mike Cabana",
-    "email": "mikeyc343@gmail.com",
-    "url": "https://mikecabana.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mikecabana/email-generator/issues"
-  },
-  "homepage": "https://github.com/mikecabana/email-generator#readme",
-  "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@types/jasmine": "^3.6.2",
-    "@types/node": "^14.14.9",
-    "@types/yargs": "^15.0.10",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
-    "eslint": "^7.14.0",
-    "husky": "^4.3.0",
-    "jasmine": "^3.6.3",
-    "jasmine-spec-reporter": "^6.0.0",
-    "jasmine-ts": "^0.3.0",
-    "mock-argv": "^1.1.8",
-    "typescript": "^4.1.2"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    "name": "email-generator",
+    "version": "1.0.0",
+    "description": "📨 Simple CLI to generate responsive emails using MJML for templating and handlebars for interpolation.",
+    "main": "src/main.ts",
+    "scripts": {
+        "tsc": "tsc",
+        "build": "npm run tsc",
+        "start": "npm run build && node dist/main",
+        "lint": "npx eslint . --ext .ts",
+        "test": "jasmine-ts --config=jasmine.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mikecabana/email-generator.git"
+    },
+    "keywords": [
+        "mjml",
+        "handlebars",
+        "email",
+        "generator",
+        "typescript"
+    ],
+    "author": {
+        "name": "Mike Cabana",
+        "email": "mikeyc343@gmail.com",
+        "url": "https://mikecabana.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/mikecabana/email-generator/issues"
+    },
+    "homepage": "https://github.com/mikecabana/email-generator#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^11.0.0",
+        "@commitlint/config-conventional": "^11.0.0",
+        "@types/jasmine": "^3.6.2",
+        "@types/node": "^14.14.9",
+        "@types/yargs": "^15.0.10",
+        "@typescript-eslint/eslint-plugin": "^4.8.2",
+        "@typescript-eslint/parser": "^4.8.2",
+        "eslint": "^7.14.0",
+        "husky": "^4.3.0",
+        "jasmine": "^3.6.3",
+        "jasmine-spec-reporter": "^6.0.0",
+        "jasmine-ts": "^0.3.0",
+        "ts-node": "^8.10.2",
+        "typescript": "^4.1.2"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+        }
+    },
+    "dependencies": {
+        "reflect-metadata": "^0.1.13",
+        "tsyringe": "^4.4.0",
+        "yargs": "^16.1.1"
     }
-  },
-  "dependencies": {
-    "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.4.0",
-    "yargs": "^16.1.1"
-  }
 }
