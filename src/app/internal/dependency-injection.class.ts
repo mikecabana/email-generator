@@ -3,7 +3,7 @@ import { EmailGeneratorManagerBase, IEmailGeneratorOptionsProvider, IEmailGenera
 import { DefaultEmailGeneratorOptionsProvider } from '../services';
 import { DefaultEmailGeneratorManager } from '../services/default-email-generator-manager.class';
 import { DefaultEmailGeneratorOutputProcessor } from '../services/default-email-generator-output-processor.class';
-import { DefaultEmailGeneratorPipelineProcessor } from '../services/default-email-generator-pipeline.processor.class';
+import { DefaultEmailGeneratorPipelineProcessor } from '../services/default-email-generator-pipeline-processor.class';
 
 /**
  * Types of DI lifecycle

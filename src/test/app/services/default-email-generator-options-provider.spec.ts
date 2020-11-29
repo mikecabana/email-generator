@@ -3,23 +3,29 @@ import mockArgv from '../../mock-argv';
 
 describe('DefaultEmailGeneratorOptionsProvider Test Suite', () => {
 
-    it('New instance should not throw', () => {
-        expect(new DefaultEmailGeneratorOptionsProvider()).not.toThrow()
-    })
+    it('New instance should not throw', () =>
+        expect(() => new DefaultEmailGeneratorOptionsProvider()).not.toThrow()
+    )
 
-    it('Missing required or no cli arguments should throw', () => {
-        const instance = new DefaultEmailGeneratorOptionsProvider();
-        mockArgv([], () => expect(instance.getEmailGeneratorOptions()).toThrow())
+    it('Missing required and no cli arguments should throw', async () => {
+        await mockArgv([], () => {
+            const instance = new DefaultEmailGeneratorOptionsProvider();
+            expect(() => instance.testGetEmailGeneratorOptions()).toThrow()
+        })
     })
 
     it('Unsupported cli arguments should not throw', () => {
-        const instance = new DefaultEmailGeneratorOptionsProvider();
-        mockArgv(['-t', 'test', '-f', 'unsupported'], () => expect(instance.getEmailGeneratorOptions()).not.toThrow())
+        mockArgv(['-t', 'test', '-f', 'unsupported'], () => {
+            const instance = new DefaultEmailGeneratorOptionsProvider();
+            expect(() => instance.testGetEmailGeneratorOptions()).not.toThrow();
+        })
     })
 
     it('Required cli arguments should not throw', () => {
-        const instance = new DefaultEmailGeneratorOptionsProvider();
-        mockArgv(['-t', 'unsupportedArg'], () => expect(instance.getEmailGeneratorOptions()).not.toThrow())
+        mockArgv(['-t', 'unsupportedArg'], () => {
+            const instance = new DefaultEmailGeneratorOptionsProvider();
+            expect(() => instance.testGetEmailGeneratorOptions()).not.toThrow()
+        })
     })
 
 });

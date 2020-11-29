@@ -1,8 +1,4 @@
-export default async (args: string[] | (() => void), callback: () => void): Promise<void> => {
-    if (typeof args === 'function') {
-        callback = args
-        args = []
-    }
+export default async (args: string[], callback: () => void): Promise<void> => {
     const oldArgv = process.argv
     process.argv = [...oldArgv.slice(0, 2), ...args]
     try {
