@@ -1,6 +1,6 @@
 import { IEmailGeneratorOptions } from "../i-email-generator-options.interface";
 import { IEmailGeneratorPipelineProcessor } from "../i-email-generator-pipeline-processor.interface";
-import { IEmailGeneratorHandler } from "./handlers";
+import { IEmailGeneratorHandler, IEmailGeneratorHandlerContext } from "./handlers";
 
 export abstract class EmailGeneratorPipelineProcessorBase implements IEmailGeneratorPipelineProcessor {
 
@@ -14,7 +14,7 @@ export abstract class EmailGeneratorPipelineProcessorBase implements IEmailGener
 
     processEmailGeneratorPipeline(options: IEmailGeneratorOptions): string[] {
         let o = options;
-        let c: unknown = null;
+        let c: IEmailGeneratorHandlerContext = {};
         const outputs: string[] = [];
         for (const handler of this._handlers) {
             const handled = handler.handle(o, c);
