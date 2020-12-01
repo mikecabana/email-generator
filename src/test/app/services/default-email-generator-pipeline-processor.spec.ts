@@ -1,20 +1,32 @@
 import { IEmailGeneratorOptions } from '../../../abstraction';
 import { DefaultEmailGeneratorPipelineProcessor } from '../../../app/services';
+import { DependencyInjection } from '../../../app/internal';
 
 describe('DefaultEmailGeneratorPipelineProcessor Test Suite', () => {
 
+    beforeAll(() => {
+        DependencyInjection.configureServices();
+    });
+
+    afterAll(() => {
+        const container = DependencyInjection.serviceProvider();
+        container.reset();
+    });
+
     it('New instance should not throw', () =>
-        expect(() => new DefaultEmailGeneratorPipelineProcessor()).not.toThrow()
+        expect(() => {
+            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
+
+        }).not.toThrow()
     )
 
     it('Using options should not throw', () =>
         expect(() => {
-
-            const instance = new DefaultEmailGeneratorPipelineProcessor();
+            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
             const mockOptions: IEmailGeneratorOptions = {
                 $0: '',
                 _: [],
-                t: '',
+                t: 'sample',
                 e: []
             }
 

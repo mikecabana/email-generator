@@ -1,9 +1,13 @@
 import { container, DependencyContainer } from 'tsyringe';
 import { EmailGeneratorManagerBase, IEmailGeneratorOptionsProvider, IEmailGeneratorOutputProcessor, IEmailGeneratorPipelineProcessor } from '../../abstraction';
+import { EmailGeneratorHandlerBase } from '../../abstraction/services/handlers';
 import { DefaultEmailGeneratorOptionsProvider } from '../services';
 import { DefaultEmailGeneratorManager } from '../services/default-email-generator-manager.class';
 import { DefaultEmailGeneratorOutputProcessor } from '../services/default-email-generator-output-processor.class';
 import { DefaultEmailGeneratorPipelineProcessor } from '../services/default-email-generator-pipeline-processor.class';
+import { SampleInterpolationEmailGeneratorHandler } from '../services/handlers/interpolation';
+import { DefaultSenderEmailGeneratorHandler } from '../services/handlers/send';
+import { DefaultTranspilationEmailGeneratorHandler } from '../services/handlers/transpilation';
 
 /**
  * Types of DI lifecycle
@@ -20,7 +24,7 @@ export class DependencyInjection {
 
     public static serviceProvider: () => DependencyContainer = () => container;
 
-    public static configureServices(): void { 
+    public static configureServices(): void {
 
         // providers
         container
@@ -32,8 +36,11 @@ export class DependencyInjection {
             .register<IEmailGeneratorOutputProcessor>('IEmailGeneratorOutputProcessor', { useClass: DefaultEmailGeneratorOutputProcessor });
 
         // handlers
-        // ToDo
-        
+        container
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: SampleInterpolationEmailGeneratorHandler })
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: DefaultTranspilationEmailGeneratorHandler })
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: DefaultSenderEmailGeneratorHandler });
+
         // manager
         container
             .register<EmailGeneratorManagerBase>('EmailGeneratorManagerBase', { useClass: DefaultEmailGeneratorManager });

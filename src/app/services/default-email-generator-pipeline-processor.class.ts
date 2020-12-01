@@ -1,17 +1,12 @@
-import { injectable } from "tsyringe";
-import { IEmailGeneratorOptions, IEmailGeneratorPipelineProcessor } from "../../abstraction";
+import { injectable, injectAll } from "tsyringe";
+import { EmailGeneratorPipelineProcessorBase, IEmailGeneratorPipelineProcessor } from "../../abstraction";
+import { IEmailGeneratorHandler } from "../../abstraction/services/handlers";
 
 @injectable()
-export class DefaultEmailGeneratorPipelineProcessor implements IEmailGeneratorPipelineProcessor {
-    processEmailGeneratorPipeline(options: IEmailGeneratorOptions): string[] {
-
-        const outputs: string[] = [];
-
-        outputs.push(`========================`);
-        outputs.push(`OPTIONS:`);
-        outputs.push(JSON.stringify(options));
-        outputs.push(`========================`);
-
-        return outputs;
+export class DefaultEmailGeneratorPipelineProcessor extends EmailGeneratorPipelineProcessorBase implements IEmailGeneratorPipelineProcessor {
+    constructor(
+        @injectAll('IEmailGeneratorHandler') handlers: IEmailGeneratorHandler[]
+    ) {
+        super(handlers);
     }
 }
