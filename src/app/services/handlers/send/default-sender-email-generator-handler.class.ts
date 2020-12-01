@@ -31,7 +31,7 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
                     try {
                         await this._transporter.sendMail({
                             to: to as string,
-                            from: 'Sample Sender<m.cabana@ieg-america.com>',
+                            from: 'Sample Sender<<YOUR_EMAIL_HERE>>',
                             subject: 'Sample Email Generated',
                             html: context.html,
                         });
@@ -53,7 +53,7 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
         }
 
         return nodemailer.createTransport({
-            host: 'mail.ieg-america.com',
+            host: '<YOUR_SMTP_HOST_HERE>',
             port: 465,
             secure: true,
             auth: {
