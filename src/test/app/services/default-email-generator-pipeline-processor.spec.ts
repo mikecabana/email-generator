@@ -4,10 +4,17 @@ import { DependencyInjection } from '../../../app/internal';
 
 describe('DefaultEmailGeneratorPipelineProcessor Test Suite', () => {
 
+    beforeAll(() => {
+        DependencyInjection.configureServices();
+    });
+
+    afterAll(() => {
+        const container = DependencyInjection.serviceProvider();
+        container.reset();
+    });
+
     it('New instance should not throw', () =>
         expect(() => {
-            DependencyInjection.configureServices();
-            // return new instance
             DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
 
         }).not.toThrow()
@@ -15,9 +22,6 @@ describe('DefaultEmailGeneratorPipelineProcessor Test Suite', () => {
 
     it('Using options should not throw', () =>
         expect(() => {
-
-            DependencyInjection.configureServices();
-            // return new instance
             const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
             const mockOptions: IEmailGeneratorOptions = {
                 $0: '',
