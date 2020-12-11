@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 class Program {
-    public main() {
+    public static main(): void {
         DependencyInjection.configureServices();
 
         const emailGeneratorManager = DependencyInjection.serviceProvider().resolve<EmailGeneratorManagerBase>('EmailGeneratorManagerBase');
@@ -18,5 +18,4 @@ class Program {
     }
 }
 
-const program = new Program();
-program.main();
+Program.main();
