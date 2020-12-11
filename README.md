@@ -87,8 +87,11 @@ export class SampleInterpolationEmailGeneratorHandler extends EmailGeneratorHand
 }
 ```
 
-This code will be the same for every interpolation handler and there should be one for each template. In hindsight I can abstract this code eventually (or if someone wants to submit a PR go for it 😜).
+This code will be the same for every interpolation handler and there should be one for each template. 
+
+In hindsight I can abstract this code eventually (or if someone wants to submit a PR go for it 😜).
 The only thing that needs to be changed is the data you're passing to your template in the `interpolateTemplateContent` function.
+
 Once that's done you can save and close the file.
 
 ### Add your handler to DI
@@ -122,7 +125,11 @@ This will output a valid html email in the `email` directory.
 ## Send a test email
 
 If you would like to send you're generated email as a test, there's a handler for that! 
-Open `src/app/services/handlers/send/default-sender-email-generator-handler.class.ts ` and replace `<YOUR_EMAIL_HERE>` with your email, `<YOUR_PASS_HERE>` with your password and `<YOUR_SMTP_HOST_HERE>` with your mail server. Again, in hindsight this can and should probably be refactored to use an evironment variable or from cmd line arguments.  
+Open or create the `.env` file and set the environment variables for  `EMAIL_USER` with your email, `EMAIL_PASS` with your emails password and `EMAIL_HOST` with your mail server. 
+
+### Enhancement
+
+Allow seeting these arguments via the commandline.
 
 Now run
 ```cmd

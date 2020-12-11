@@ -34,7 +34,7 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
                     try {
                         await this._transporter.sendMail({
                             to: to as string,
-                            from: 'Sample Sender<<YOUR_EMAIL_HERE>>',
+                            from: `Sample Sender<${process.env.EMAIL_USER}>`,
                             subject: 'Sample Email Generated',
                             html: context.html,
                         });
@@ -56,12 +56,12 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
         }
 
         return nodemailer.createTransport({
-            host: '<YOUR_SMTP_HOST_HERE>',
+            host: process.env.EMAIL_HOST,
             port: 465,
             secure: true,
             auth: {
-                user: '<YOUR_EMAIL_HERE>',
-                pass: '<YOUR_PASS_HERE>',
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
         })
     }
