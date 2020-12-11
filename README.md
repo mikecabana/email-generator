@@ -129,7 +129,7 @@ Open or create the `.env` file and set the environment variables for  `EMAIL_USE
 
 ### Enhancement
 
-Allow seeting these arguments via the commandline.
+Allow seeing these arguments via the commandline.
 
 Now run
 ```cmd
