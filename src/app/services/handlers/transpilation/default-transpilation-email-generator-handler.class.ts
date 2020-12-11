@@ -11,6 +11,11 @@ export class DefaultTranspilationEmailGeneratorHandler extends EmailGeneratorHan
     }
 
     transpile(options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext): { options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext, output?: string } {
+
+        if (!context.template) {
+            return { options, context, output: 'No Template Found' };
+        }
+        
         const html = mjml(context.template).html;
 
         // write for easy use
@@ -23,5 +28,6 @@ export class DefaultTranspilationEmailGeneratorHandler extends EmailGeneratorHan
         context = { ...context, html }
 
         return { options, context, output: 'Template transpiled' };
+
     }
 }

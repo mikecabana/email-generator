@@ -91,6 +91,20 @@ This code will be the same for every interpolation handler and there should be o
 The only thing that needs to be changed is the data you're passing to your template in the `interpolateTemplateContent` function.
 Once that's done you can save and close the file.
 
+### Add your handler to DI
+
+Open `src/app/internal/dependency-injection.class.ts` and register your new handler.
+
+```typescript
+// handlers
+        container
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: SampleInterpolationEmailGeneratorHandler })
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: /* YOUR_HANDLER_HERE */ })
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: DefaultTranspilationEmailGeneratorHandler })
+            .register<EmailGeneratorHandlerBase>('IEmailGeneratorHandler', { useClass: DefaultSenderEmailGeneratorHandler });
+``` 
+**It's important you keep the registration order for this tool to work properly. All your handlers should be added before the `DefaultTranspilationEmailGeneratorHandler` and the `DefaultSenderEmailGeneratorHandler`**
+
 ## Generate your email
 
 Now that you have a tempalte and am interpolation handler, we can finally generate your email.

@@ -21,6 +21,9 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
     send(options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext): { options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext, output?: string } {
         if (options.e && options.e.length > 0) {
 
+            if (!context.html) {
+                return { options, context, output: 'Counld not send test email. No HTML in context.' };
+            }
 
             this._transporter.verify((err) => {
                 if (err) {
