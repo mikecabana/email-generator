@@ -1,12 +1,18 @@
-import { singleton } from "tsyringe";
-import { IEmailGeneratorOptions } from "../../../../abstraction";
-import { EmailGeneratorHandlerBase, IEmailGeneratorHandlerContext, ISenderEmailGeneratorHandler } from "../../../../abstraction/services/handlers";
+import { singleton } from 'tsyringe';
+import { IEmailGeneratorOptions } from '../../../../abstraction';
+import {
+    EmailGeneratorHandlerBase,
+    IEmailGeneratorHandlerContext,
+    ISenderEmailGeneratorHandler
+} from '../../../../abstraction/services/handlers';
 import nodemailer from 'nodemailer';
-import Mail from "nodemailer/lib/mailer";
+import Mail from 'nodemailer/lib/mailer';
 
 @singleton()
-export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBase implements ISenderEmailGeneratorHandler {
-
+export class DefaultSenderEmailGeneratorHandler
+    extends EmailGeneratorHandlerBase
+    implements ISenderEmailGeneratorHandler
+{
     private _transporter: Mail;
 
     constructor() {
@@ -14,15 +20,32 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
         this._transporter = this.createTransporter();
     }
 
-    handle(options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext): { options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext, output?: string } {
+    handle(
+        options: IEmailGeneratorOptions,
+        context: IEmailGeneratorHandlerContext
+    ): {
+        options: IEmailGeneratorOptions;
+        context: IEmailGeneratorHandlerContext;
+        output?: string;
+    } {
         return this.send(options, context);
     }
 
-    send(options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext): { options: IEmailGeneratorOptions, context: IEmailGeneratorHandlerContext, output?: string } {
+    send(
+        options: IEmailGeneratorOptions,
+        context: IEmailGeneratorHandlerContext
+    ): {
+        options: IEmailGeneratorOptions;
+        context: IEmailGeneratorHandlerContext;
+        output?: string;
+    } {
         if (options.e && options.e.length > 0) {
-
             if (!context.html) {
-                return { options, context, output: 'Counld not send test email. No HTML in context.' };
+                return {
+                    options,
+                    context,
+                    output: 'Could not send test email. No HTML in context.'
+                };
             }
 
             this._transporter.verify((err) => {
@@ -36,14 +59,13 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
                             to: to as string,
                             from: `Sample Sender<${process.env.EMAIL_USER}>`,
                             subject: 'Sample Email Generated',
-                            html: context.html,
+                            html: context.html
                         });
+                    } catch (e) {
+                        throw new Error(e as any);
                     }
-                    catch (e) {
-                        throw new Error(e);
-                    }
-                })
-            })
+                });
+            });
 
             return { options, context, output: 'Send test emails' };
         }
@@ -61,8 +83,8 @@ export class DefaultSenderEmailGeneratorHandler extends EmailGeneratorHandlerBas
             secure: true,
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
-        })
+                pass: process.env.EMAIL_PASS
+            }
+        });
     }
 }

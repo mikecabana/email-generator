@@ -1,0 +1,90 @@
+<mjml>
+    <mj-head>
+        <mj-style inline="inline">
+            .links a { color: #FFFFFF !important; }
+        </mj-style>
+    </mj-head>
+    <mj-body>
+        <mj-section background-color="#2893cc">
+            <mj-column>
+                <mj-image
+                    align="left"
+                    width="75px"
+                    href="https://google.ca"
+                    src="https://via.placeholder.com/180x72"
+                ></mj-image>
+            </mj-column>
+        </mj-section>
+        <mj-section padding-bottom="0" background-color="#EEEEEE">
+            <mj-column>
+                <mj-text
+                    align="center"
+                    font-size="18px"
+                    color="#0e0e0e"
+                    font-family="helvetica"
+                    >{{statement}}</mj-text
+                >
+            </mj-column>
+        </mj-section>
+        <mj-section background-color="#EEEEEE">
+            <mj-column>
+                <mj-divider
+                    padding-bottom="20px"
+                    padding-bottom="0"
+                    border-width="1px"
+                    border-color="#2993cc"
+                ></mj-divider>
+                <mj-text
+                    align="center"
+                    font-size="14px"
+                    color="#0e0e0e"
+                    font-family="helvetica"
+                    >{{content}}</mj-text
+                >
+
+                {{#each actions}}
+                <mj-button
+                    href="{{this.link}}"
+                    align="center"
+                    font-size="16px"
+                    background-color="#2893cc"
+                    color="#FFFFFF"
+                    font-family="helvetica"
+                    >{{this.label}}</mj-button
+                >
+                {{/each}}
+            </mj-column>
+        </mj-section>
+        <mj-section background-color="#525252" padding-bottom="0">
+            <mj-column>
+                <mj-image
+                    align="center"
+                    href="https://google.ca"
+                    width="50px"
+                    src="https://via.placeholder.com/180x72"
+                ></mj-image>
+                <mj-text
+                    align="center"
+                    font-size="12px"
+                    color="#FFFFFF"
+                    font-family="helvetica"
+                    >© {{year}} Company Inc</mj-text
+                >
+            </mj-column>
+        </mj-section>
+        <mj-section background-color="#525252" padding-top="0">
+            <mj-column>
+                <mj-text
+                    css-class="links"
+                    align="center"
+                    font-size="12px"
+                    color="#FFFFFF"
+                    font-family="helvetica"
+                >
+                    <a href="{{termsLink}}" target="_blank">Terms of Use</a> |
+                    <a href="{{privacyLink}}" target="_blank">Privacy Policy</a>
+                </mj-text>
+            </mj-column>
+        </mj-section>
+    </mj-body>
+</mjml>

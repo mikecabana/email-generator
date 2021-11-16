@@ -1,7 +1,6 @@
-import { IEmailGeneratorOptions } from "./i-email-generator-options.interface";
+import { IEmailGeneratorOptions } from './i-email-generator-options.interface';
 
 export interface IEmailGeneratorOptionsProvider {
     getEmailGeneratorOptions(): IEmailGeneratorOptions;
     testGetEmailGeneratorOptions(): IEmailGeneratorOptions;
-    
 }

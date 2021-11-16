@@ -1,15 +1,17 @@
-import { IEmailGeneratorOptions } from "../i-email-generator-options.interface";
-import { IEmailGeneratorPipelineProcessor } from "../i-email-generator-pipeline-processor.interface";
-import { IEmailGeneratorHandler, IEmailGeneratorHandlerContext } from "./handlers";
+import { IEmailGeneratorOptions } from '../i-email-generator-options.interface';
+import { IEmailGeneratorPipelineProcessor } from '../i-email-generator-pipeline-processor.interface';
+import {
+    IEmailGeneratorHandler,
+    IEmailGeneratorHandlerContext
+} from './handlers';
 
-export abstract class EmailGeneratorPipelineProcessorBase implements IEmailGeneratorPipelineProcessor {
-
+export abstract class EmailGeneratorPipelineProcessorBase
+    implements IEmailGeneratorPipelineProcessor
+{
     private readonly _handlers: IEmailGeneratorHandler[];
 
-    constructor(
-        handlers: IEmailGeneratorHandler[]
-    ) {
-        this._handlers = handlers
+    constructor(handlers: IEmailGeneratorHandler[]) {
+        this._handlers = handlers;
     }
 
     processEmailGeneratorPipeline(options: IEmailGeneratorOptions): string[] {

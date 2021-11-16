@@ -1,8 +1,10 @@
-import { injectable } from "tsyringe";
-import { IEmailGeneratorOutputProcessor } from "../../abstraction";
+import { injectable } from 'tsyringe';
+import { IEmailGeneratorOutputProcessor } from '../../abstraction';
 
 @injectable()
-export class DefaultEmailGeneratorOutputProcessor implements IEmailGeneratorOutputProcessor {
+export class DefaultEmailGeneratorOutputProcessor
+    implements IEmailGeneratorOutputProcessor
+{
     processEmailGeneratorOutputs(outputs: string | string[]): void {
         if (outputs instanceof Array) {
             for (const o of outputs) {
