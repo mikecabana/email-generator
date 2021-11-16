@@ -1,0 +1,309 @@
+<mjml>
+    <mj-head>
+        <mj-style>
+            .email-background-primary, .email-background-primary div,
+            .email-background-primary table, .email-btn-primary td,
+            .email-btn-primary td p, .email-btn-primary td a { background-color:
+            #05164D !important; color: #fff !important; }
+            .email-background-secondary, .email-background-secondary div,
+            .email-background-secondary table, .email-btn-secondary td,
+            .email-btn-secondary td p, .email-btn-secondary td a {
+            background-color: #ffad00 !important; color: #fff !important; }
+            .email-background-header, .email-background-header div,
+            .email-background-header table { background-color: #05164D
+            !important; color: #fff !important; } .email-background-default,
+            .email-background-default div, .email-background-default table {
+            background-color: #fff; color: #212529 !important; }
+            .email-background-light, .email-background-light div,
+            .email-background-light table { background-color: #f8f9fa; color:
+            #212529 !important; } .email-text-primary, .email-text-primary div {
+            color: #05164D !important; } .email-text-muted, .email-text-muted
+            div { color: #6c757d !important; } .email-label, .email-label div {
+            color: #6c757d !important; } .email div { font-size: 14px
+            !important; } .email-header { border-radius: 5px 5px 0px 0px; }
+            .email-footer { border-radius: 0px 0px 5px 5px; } .email-h1,
+            .email-h1 div { font-size: 35px !important; } .email-h2, .email-h2
+            div { font-size: 28px !important; } .email-h3, .email-h3 div {
+            font-size: 24.5px !important; } .email-pb-0 { padding-bottom: 0
+            !important; } .email-pt-0 { padding-top: 0 !important; }
+            .email-text-right div { text-align: right !important; }
+            .email-text-center div { text-align: center !important; }
+            .email-text-strong, .email-text-strong div { font-weight: bold
+            !important; } .email-label, .email-label div { font-size: 10.5px
+            !important; } .email-btn-lg p { padding: 4px; font-size: 17.5px
+            !important; } .email-banner { display: block; } .email-merchant-name
+            { display: none; }
+        </mj-style>
+    </mj-head>
+
+    <mj-body>
+        <mj-wrapper css-class="email">
+            <mj-raw>{{#if UseBanner}}</mj-raw>
+            <mj-section padding="0" css-class="email-banner">
+                <mj-column>
+                    <mj-spacer height="60px" />
+                    <mj-image
+                        padding="0"
+                        src="{{ BannerSrc }}"
+                        alt="{{ Text.MerchantName }}"
+                    />
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{else}}</mj-raw>
+
+            <mj-section css-class="email-background-header email-merchant-name">
+                <mj-column>
+                    <mj-text css-class="email-h1"
+                        >{{ Text.MerchantName }}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+            <mj-raw>{{/if}}</mj-raw>
+
+            <mj-section
+                css-class="email-background-header"
+                padding="30px 0 30px 0"
+            >
+                <mj-column>
+                    <mj-text>{{ Text.MainText }}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section
+                css-class="email-background-default"
+                padding="30px 0 0 0"
+            >
+                <mj-raw>{{#if HasBarCode}}</mj-raw>
+
+                <mj-column>
+                    <mj-text css-class="email-h2" padding="0 0 0 20px"
+                        >{{ Text.ReservationLabel }}</mj-text
+                    >
+                    <mj-text css-class="email-text-muted email-pb-0"
+                        >{{ Lounge.Label }}</mj-text
+                    >
+                </mj-column>
+
+                <mj-raw>{{/if}}</mj-raw>
+
+                <mj-column>
+                    <mj-text
+                        css-class="email-h2"
+                        padding="0 20px 0 0"
+                        align="right"
+                        >{{ Reservation.Reference }}</mj-text
+                    >
+                    <mj-text css-class="email-text-muted" align="right"
+                        >{{ Text.ReferenceFieldLabel }}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{#if HasBarCode}}</mj-raw>
+
+            <mj-section
+                css-class="email-background-default"
+                padding="0 0 30px 0"
+            >
+                <mj-column>
+                    <mj-image
+                        padding="0 20px 0 20px"
+                        width="300px"
+                        src="{{ BarCodeSrc }}"
+                    />
+                </mj-column>
+            </mj-section>
+
+            <mj-section css-class="email-background-light" padding="30px 0 0 0">
+                <mj-column>
+                    <mj-text css-class="email-h2"
+                        >{{ Text.ReferenceDetailsSectionLabel }}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-section css-class="email-background-light" padding="0 0 15px 0">
+                <mj-column>
+                    <mj-text css-class="email-label" padding="10px 20px 0 20px"
+                        >{{ Text.ReferenceDetailsLoungeFieldLabel }}</mj-text
+                    >
+                    <mj-text>{{ Lounge.Label }}</mj-text>
+                </mj-column>
+                <mj-column>
+                    <mj-text css-class="email-label" padding="10px 20px 0 20px"
+                        >{{ Text.ReferenceDetailsDateTimeFieldLabel }}</mj-text
+                    >
+                    <mj-text>{{ Reservation.Date }}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section css-class="email-background-light" padding="0 0 0 0">
+                <mj-column>
+                    <mj-text css-class="email-h3"
+                        >{{ Text.ReferenceDetailsPassengerSectionLabel
+                        }}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-section css-class="email-background-light" padding="0 0 15px 0">
+                <mj-column>
+                    <mj-text css-class="email-label" padding="10px 20px 0 20px"
+                        >{{ Text.ReferenceDetailsNameFieldLabel }}</mj-text
+                    >
+                    <mj-text>{{ User.FirstName }} {{ User.LastName }}</mj-text>
+                </mj-column>
+                <mj-column>
+                    <mj-text css-class="email-label" padding="10px 20px 0 20px"
+                        >{{ Text.ReferenceDetailsFlightFieldLabel }}</mj-text
+                    >
+                    <mj-text>{{ Reservation.Flight }}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{#if Reservation.HasNote}}</mj-raw>
+
+            <mj-section css-class="email-background-light" padding="0 0 0 0">
+                <mj-column>
+                    <mj-text css-class="email-label" padding="10px 20px 0 20px"
+                        >{{ Text.ReferenceDetailsCommentsFieldLabel }}</mj-text
+                    >
+                    <mj-text>{{ Reservation.Note }}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/if}}</mj-raw>
+
+            <mj-section
+                css-class="email-background-light"
+                padding="15px 0 30px 0"
+            >
+                <mj-column>
+                    <mj-button
+                        href="{{ CallbackUrl }}"
+                        css-class="email-btn-primary email-btn-lg"
+                    >
+                        {{ Text.ManageReservationButtonLabel }}
+                    </mj-button>
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/if}}</mj-raw>
+
+            <mj-section
+                css-class="email-background-default"
+                padding="40px 0 0 0"
+            >
+                <mj-column>
+                    <mj-text css-class="email-h2"
+                        >{{ Text.PurchaseSummarySectionLabel }}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{#each Purchase.Items}}</mj-raw>
+
+            <mj-section css-class="email-background-default" padding="0 0 0 0">
+                <mj-column width="400px">
+                    <mj-text>&times; {{Quantity}} {{ Label }}</mj-text>
+                </mj-column>
+                <mj-column css-class="email-text-right" width="200px">
+                    <mj-text>{{Currency}} {{Amount}}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/each}}</mj-raw>
+
+            <mj-raw>{{#if Purchase.HasItemSubTotals }}</mj-raw>
+
+            <mj-section css-class="email-background-default" padding="0 0 0 0">
+                <mj-column css-class="email-text-right" width="400px">
+                    <mj-text css-class="email-text-strong"
+                        >{{ Text.PurchaseSummaryTablePaymentSubTotalLabel
+                        }}</mj-text
+                    >
+                </mj-column>
+                <mj-column css-class="email-text-right" width="200px">
+                    <mj-text
+                        >{{Purchase.ItemSubTotal.Currency}}
+                        {{Purchase.ItemSubTotal.Amount}}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/if}}</mj-raw>
+
+            <mj-section padding="0 15px 0 15px">
+                <mj-column background-color="#ccc">
+                    <mj-spacer height="1px" />
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{#each Purchase.Taxes}}</mj-raw>
+
+            <mj-section css-class="email-background-default" padding="0 0 0 0">
+                <mj-column width="400px">
+                    <mj-text>{{Label}}</mj-text>
+                </mj-column>
+                <mj-column css-class="email-text-right" width="200px">
+                    <mj-text>{{Currency}} {{Amount}}</mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/each}}</mj-raw>
+
+            <mj-raw>{{#if Purchase.HasTaxes}}</mj-raw>
+
+            <mj-section css-class="email-background-default" padding="0 0 0 0">
+                <mj-column css-class="email-text-right" width="400px">
+                    <mj-text css-class="email-text-strong"
+                        >{{ Text.PurchaseSummaryTablePaymentSubTotalLabel
+                        }}</mj-text
+                    >
+                </mj-column>
+                <mj-column css-class="email-text-right" width="200px">
+                    <mj-text
+                        >{{Purchase.TaxSubTotal.Currency}}
+                        {{Purchase.TaxSubTotal.Amount}}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="0 15px 0 15px">
+                <mj-column background-color="#ccc">
+                    <mj-spacer height="1px" />
+                </mj-column>
+            </mj-section>
+
+            <mj-raw>{{/if}}</mj-raw>
+
+            <mj-section
+                css-class="email-footer email-background-default"
+                padding="0 0 30px 0"
+            >
+                <mj-column css-class="email-text-right" width="400px">
+                    <mj-text css-class="email-text-strong"
+                        >{{ Text.PurchaseSummaryTablePaymentTotalLabel
+                        }}</mj-text
+                    >
+                </mj-column>
+                <mj-column css-class="email-text-right" width="200px">
+                    <mj-text css-class="email-text-strong"
+                        >{{Purchase.Currency}} {{Purchase.Amount}}</mj-text
+                    >
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="0">
+                <mj-column>
+                    <mj-text css-class="email-text-center email-text-muted">
+                        <a class="email-text-muted" href="https://google.ca"
+                            >{{ Text.PoweredByFooterLabel }}
+                        </a>
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+    </mj-body>
+</mjml>
