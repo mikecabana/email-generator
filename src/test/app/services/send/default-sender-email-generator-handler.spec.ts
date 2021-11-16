@@ -1,9 +1,10 @@
-import { IEmailGeneratorHandler } from "../../../../abstraction/services/handlers";
-import { DependencyInjection } from "../../../../app/internal";
-import { DefaultSenderEmailGeneratorHandler } from "../../../../app/services/handlers/send";
+import 'reflect-metadata';
+
+import { IEmailGeneratorHandler } from '../../../../abstraction/services/handlers';
+import { DependencyInjection } from '../../../../app/internal';
+import { DefaultSenderEmailGeneratorHandler } from '../../../../app/services/handlers/send';
 
 describe('DefaultSenderEmailGeneratorHandler Test Suite', () => {
-
     beforeAll(() => {
         DependencyInjection.configureServices();
     });
@@ -13,16 +14,21 @@ describe('DefaultSenderEmailGeneratorHandler Test Suite', () => {
         container.reset();
     });
 
-    it('New instance should not throw', () =>
+    test('New instance should not throw', () =>
         expect(() => {
-            DependencyInjection.serviceProvider().resolveAll<IEmailGeneratorHandler>('IEmailGeneratorHandler')
-        }).not.toThrow()
-    )
+            DependencyInjection.serviceProvider().resolveAll<IEmailGeneratorHandler>(
+                'IEmailGeneratorHandler'
+            );
+        }).not.toThrow());
 
-    it('There should be 1 instance', () => {
-        const handlers = DependencyInjection.serviceProvider().resolveAll<IEmailGeneratorHandler>('IEmailGeneratorHandler');
-        const filtered = handlers.filter(h => h instanceof DefaultSenderEmailGeneratorHandler);
-        expect(filtered).toHaveSize(1);
-    })
-
-})
+    test('There should be 1 instance', () => {
+        const handlers =
+            DependencyInjection.serviceProvider().resolveAll<IEmailGeneratorHandler>(
+                'IEmailGeneratorHandler'
+            );
+        const filtered = handlers.filter(
+            (h) => h instanceof DefaultSenderEmailGeneratorHandler
+        );
+        expect(filtered).toHaveLength(1);
+    });
+});

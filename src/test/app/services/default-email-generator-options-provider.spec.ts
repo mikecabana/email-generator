@@ -1,9 +1,10 @@
+import 'reflect-metadata';
+
 import { DependencyInjection } from '../../../app/internal';
 import { DefaultEmailGeneratorOptionsProvider } from '../../../app/services';
 import mockArgv from '../../mock-argv';
 
 describe('DefaultEmailGeneratorOptionsProvider Test Suite', () => {
-
     beforeAll(() => {
         DependencyInjection.configureServices();
     });
@@ -13,29 +14,40 @@ describe('DefaultEmailGeneratorOptionsProvider Test Suite', () => {
         container.reset();
     });
 
-    it('New instance should not throw', () =>
-        expect(() => DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>('IEmailGeneratorOptionsProvider')).not.toThrow()
-    )
+    test('New instance should not throw', () =>
+        expect(() =>
+            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>(
+                'IEmailGeneratorOptionsProvider'
+            )
+        ).not.toThrow());
 
-    it('Missing required and no cli arguments should throw', async () => {
+    test('Missing required and no cli arguments should throw', async () => {
         await mockArgv([], () => {
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>('IEmailGeneratorOptionsProvider');
-            expect(() => instance.testGetEmailGeneratorOptions()).toThrow()
-        })
-    })
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>(
+                    'IEmailGeneratorOptionsProvider'
+                );
+            expect(() => instance.testGetEmailGeneratorOptions()).toThrow();
+        });
+    });
 
-    it('Unsupported cli arguments should not throw', () => {
+    test('Unsupported cli arguments should not throw', () => {
         mockArgv(['-t', 'test', '-f', 'unsupported'], () => {
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>('IEmailGeneratorOptionsProvider');
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>(
+                    'IEmailGeneratorOptionsProvider'
+                );
             expect(() => instance.testGetEmailGeneratorOptions()).not.toThrow();
-        })
-    })
+        });
+    });
 
-    it('Required cli arguments should not throw', () => {
+    test('Required cli arguments should not throw', () => {
         mockArgv(['-t', 'unsupportedArg'], () => {
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>('IEmailGeneratorOptionsProvider');
-            expect(() => instance.testGetEmailGeneratorOptions()).not.toThrow()
-        })
-    })
-
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOptionsProvider>(
+                    'IEmailGeneratorOptionsProvider'
+                );
+            expect(() => instance.testGetEmailGeneratorOptions()).not.toThrow();
+        });
+    });
 });

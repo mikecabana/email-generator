@@ -1,9 +1,10 @@
+import 'reflect-metadata';
+
 import { IEmailGeneratorOptions } from '../../../abstraction';
 import { DefaultEmailGeneratorPipelineProcessor } from '../../../app/services';
 import { DependencyInjection } from '../../../app/internal';
 
 describe('DefaultEmailGeneratorPipelineProcessor Test Suite', () => {
-
     beforeAll(() => {
         DependencyInjection.configureServices();
     });
@@ -13,26 +14,26 @@ describe('DefaultEmailGeneratorPipelineProcessor Test Suite', () => {
         container.reset();
     });
 
-    it('New instance should not throw', () =>
+    test('New instance should not throw', () =>
         expect(() => {
-            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
+            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>(
+                'IEmailGeneratorPipelineProcessor'
+            );
+        }).not.toThrow());
 
-        }).not.toThrow()
-    )
-
-    it('Using options should not throw', () =>
+    test('Using options should not throw', () =>
         expect(() => {
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>('IEmailGeneratorPipelineProcessor');
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorPipelineProcessor>(
+                    'IEmailGeneratorPipelineProcessor'
+                );
             const mockOptions: IEmailGeneratorOptions = {
                 $0: '',
                 _: [],
                 t: 'sample',
                 e: []
-            }
+            };
 
-            instance.processEmailGeneratorPipeline(mockOptions)
-
-        }).not.toThrow()
-    )
-
+            instance.processEmailGeneratorPipeline(mockOptions);
+        }).not.toThrow());
 });

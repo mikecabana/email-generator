@@ -1,9 +1,9 @@
-import { DefaultEmailGeneratorManager } from '../../../app/services';
+import 'reflect-metadata';
 
+import { DefaultEmailGeneratorManager } from '../../../app/services';
 import { DependencyInjection } from '../../../app/internal';
 
 describe('DefaultEmailGeneratorManager Test Suite', () => {
-
     beforeAll(() => {
         DependencyInjection.configureServices();
     });
@@ -13,10 +13,10 @@ describe('DefaultEmailGeneratorManager Test Suite', () => {
         container.reset();
     });
 
-    it('New instance should not throw', () =>
+    test('New instance should not throw', () =>
         expect(() => {
-            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorManager>('EmailGeneratorManagerBase');
-        }).not.toThrow()
-    )
-
+            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorManager>(
+                'EmailGeneratorManagerBase'
+            );
+        }).not.toThrow());
 });

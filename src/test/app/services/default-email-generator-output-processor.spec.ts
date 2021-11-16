@@ -1,8 +1,9 @@
+import 'reflect-metadata';
+
 import { DependencyInjection } from '../../../app/internal';
 import { DefaultEmailGeneratorOutputProcessor } from '../../../app/services';
 
 describe('DefaultEmailGeneratorOutputProcessor Test Suite', () => {
-
     beforeAll(() => {
         DependencyInjection.configureServices();
     });
@@ -12,33 +13,35 @@ describe('DefaultEmailGeneratorOutputProcessor Test Suite', () => {
         container.reset();
     });
 
-    it('New instance should not throw', () =>
-        expect(() => DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>('IEmailGeneratorOutputProcessor')).not.toThrow()
-    )
+    test('New instance should not throw', () =>
+        expect(() =>
+            DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>(
+                'IEmailGeneratorOutputProcessor'
+            )
+        ).not.toThrow());
 
-    it('String array should output and not throw', () =>
+    test('String array should output and not throw', () =>
         expect(() => {
-
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>('IEmailGeneratorOutputProcessor');
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>(
+                    'IEmailGeneratorOutputProcessor'
+                );
             const mockOutputs = [
-                'Sample a',
-                'Sample b'
-            ]
+                '\nSample string in array at index 0',
+                '\nSample string in array at index 1'
+            ];
 
-            instance.processEmailGeneratorOutputs(mockOutputs)
+            instance.processEmailGeneratorOutputs(mockOutputs);
+        }).not.toThrow());
 
-        }).not.toThrow()
-    )
-
-    it('String should output and not throw', () =>
+    test('String should output and not throw', () =>
         expect(() => {
+            const instance =
+                DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>(
+                    'IEmailGeneratorOutputProcessor'
+                );
+            const mockOutputs = '\nSample string';
 
-            const instance = DependencyInjection.serviceProvider().resolve<DefaultEmailGeneratorOutputProcessor>('IEmailGeneratorOutputProcessor');
-            const mockOutputs = 'Sample a';
-
-            instance.processEmailGeneratorOutputs(mockOutputs)
-
-        }).not.toThrow()
-    )
-
+            instance.processEmailGeneratorOutputs(mockOutputs);
+        }).not.toThrow());
 });

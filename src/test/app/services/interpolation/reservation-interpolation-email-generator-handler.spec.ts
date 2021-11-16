@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 import { IEmailGeneratorHandler } from '../../../../abstraction/services/handlers';
 import { DependencyInjection } from '../../../../app/internal';
-import { DefaultTranspilationEmailGeneratorHandler } from '../../../../app/services/handlers/transpilation';
+import { ReservationInterpolationEmailGeneratorHandler } from '../../../../app/services/handlers/interpolation';
 
 describe('DefaultTranspilationEmailGeneratorHandler Test Suite', () => {
     beforeAll(() => {
@@ -27,7 +27,7 @@ describe('DefaultTranspilationEmailGeneratorHandler Test Suite', () => {
                 'IEmailGeneratorHandler'
             );
         const filtered = handlers.filter(
-            (h) => h instanceof DefaultTranspilationEmailGeneratorHandler
+            (h) => h instanceof ReservationInterpolationEmailGeneratorHandler
         );
         expect(filtered).toHaveLength(1);
     });
